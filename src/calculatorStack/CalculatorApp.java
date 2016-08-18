@@ -19,10 +19,12 @@ public class CalculatorApp {
 		for (int i=0; i<input.length(); i++){
 			char singleDigit = input.charAt(i);
 			
-			if (singleDigit == '0' ||singleDigit == '1'|| singleDigit == '2'||singleDigit == '3' ||
-				singleDigit == '4' ||singleDigit == '5'|| singleDigit == '6'||singleDigit == '7' ||
-				singleDigit == '8' ||singleDigit == '9'){
+//			if (singleDigit == '0' ||singleDigit == '1'|| singleDigit == '2'||singleDigit == '3' ||
+//				singleDigit == '4' ||singleDigit == '5'|| singleDigit == '6'||singleDigit == '7' ||
+//				singleDigit == '8' ||singleDigit == '9'){
 	
+			if (Character.isDigit(singleDigit)) {
+			
 			singDing = Character.getNumericValue(singleDigit);
 		
 			s.push(singDing);

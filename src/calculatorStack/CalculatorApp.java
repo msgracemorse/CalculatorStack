@@ -7,72 +7,118 @@ public class CalculatorApp {
 
 	public static void main(String[] args) {
 		
+		String choice = "y";
+		
 		Stack <Integer> s = new Stack <Integer>();
 		Scanner scan1 = new Scanner(System.in);
+		int x;
+		int y;
+		int result;
 		
-		System.out.println("What do you want to calculate?");
-		
-		String input = scan1.nextLine();
-		scan1.nextLine();
-		int singDing = 0;
+		while (choice.equalsIgnoreCase("y")) {
 			
-		for (int i=0; i<input.length(); i++){
-			char singleDigit = input.charAt(i);
+			System.out.println("What do you want to calculate?");
 			
-//			if (singleDigit == '0' ||singleDigit == '1'|| singleDigit == '2'||singleDigit == '3' ||
-//				singleDigit == '4' ||singleDigit == '5'|| singleDigit == '6'||singleDigit == '7' ||
-//				singleDigit == '8' ||singleDigit == '9'){
-	
-			if (Character.isDigit(singleDigit)) {
+			String input = scan1.nextLine();
 			
-			singDing = Character.getNumericValue(singleDigit);
-		
-			s.push(singDing);
-			
-		}   else if (singleDigit == '+'){
-			
-			int x = s.pop();
-			int y = s.pop();
-						
-			int result = y + x;
+										
+			for (int i=0; i<input.length(); i++){
+				char singleDigit = input.charAt(i);
 				
-			System.out.println(y + "+" + x + "=" + result);
-			
-			s.push(result);
+//				if (singleDigit == '0' ||singleDigit == '1'|| singleDigit == '2'||singleDigit == '3' ||
+//					singleDigit == '4' ||singleDigit == '5'|| singleDigit == '6'||singleDigit == '7' ||
+//					singleDigit == '8' ||singleDigit == '9'){
 				
-		}	else if (singleDigit == '-'){
-			
-			int x = s.pop();
-			int y = s.pop();
-						
-			int result = y - x;
+				//this "isDigit" method does same as above
+				if (Character.isDigit(singleDigit)) {
 				
-			System.out.println(y + "-" + x + "=" + result);
+				int singDing = Character.getNumericValue(singleDigit);
 			
-			s.push(result);
-			
-		}	else if (singleDigit == '*'){
-			
-			int x = s.pop();
-			int y = s.pop();
-						
-			int result = y * x;
+				s.push(singDing);
 				
-			System.out.println(y + "*" + x + "=" + result);
+				} else if (singleDigit == '*') {
+				
+				multiplication(s);
 					
-			s.push(result);
-			
-		}   else if (singleDigit == '/'){
-			
-			int x = s.pop();
-			int y = s.pop();
-						
-			int result = y / x;
+				} else if (singleDigit == '/') {
 				
-			System.out.println(y + "/" + x + "=" + result);
+				division(s);
+				
+				} else if (singleDigit == '+') {
+				
+				addition(s);
+				
+				} else if (singleDigit == '-') {
+				
+				subtraction(s);
+				
+				}
+
+						
+			}
+		
+			System.out.println("Continue? y/n ");
+			choice = scan1.nextLine();
+	
+		}	
+
+	
+	}
+
+	private static void subtraction(Stack<Integer> s) {
+		int x;
+		int y;
+		int result;
+		x = s.pop();
+		y = s.pop();
+					
+		result = y - x;
 			
-			s.push(result);
-		}
-}	
-}	
+		System.out.println(y + " - " + x + " = " + result);
+		
+		s.push(result);
+	}
+
+	private static void addition(Stack<Integer> s) {
+		int x;
+		int y;
+		int result;
+		x = s.pop();
+		y = s.pop();
+					
+		result = y + x;
+			
+		System.out.println(y + " + " + x + " = " + result);
+				
+		s.push(result);
+	}
+
+	private static void division(Stack<Integer> s) {
+		int x;
+		int y;
+		int result;
+		x = s.pop();
+		y = s.pop();
+		
+		result = y / x;
+			
+		System.out.println(y + " / " + x + " = " + result);
+		
+		s.push(result);
+	}
+
+	private static void multiplication(Stack<Integer> s) {
+		int x;
+		int y;
+		int result;
+		x = s.pop();
+		y = s.pop();
+					
+		result = y * x;
+			
+		System.out.println(y + " * " + x + " = " + result);
+		
+		s.push(result);
+	}
+	
 }
